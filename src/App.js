@@ -9,6 +9,9 @@ function App() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
 
+  const [birthday, setBirthday] = useState("");
+  // const [birthdayError, setBirthdayError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("submitted");
@@ -29,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Home:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
@@ -59,7 +62,14 @@ function App() {
         />
         <ValidationError showError={emailError} message="You must use a valid email address." />
       
-        <input className="submit" type="submit" value="Submit" />
+        <input
+          type="date" 
+          value={birthday} 
+          onChange={e => setBirthday(e.target.value)}
+          required 
+        />
+
+        <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
       </form>
     </div>
   );
