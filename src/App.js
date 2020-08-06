@@ -6,6 +6,9 @@ function App() {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("submitted");
@@ -16,6 +19,10 @@ function App() {
 
     if (id === 'name') {
       setNameError(!(/^[a-z\d\-\s]+$/i.test(value)));
+    } 
+
+    if (id === 'email') {
+      return setEmailError(!(/[^@]+@[^.]+\..+/g.test(value)))
     } 
   }
   
@@ -36,6 +43,22 @@ function App() {
         />
         <ValidationError showError={nameError} message="You must enter a valid name." />
 
+
+        <label htmlFor="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          onBlur={e => validate(e.target)}
+          placeholder="ex: russell@seahawks.com"
+          aria-label="Email"
+          aria-required="true"
+          aria-invalid={emailError}
+          required
+        />
+        <ValidationError showError={emailError} message="You must use a valid email address." />
+      
         <input className="submit" type="submit" value="Submit" />
       </form>
     </div>
