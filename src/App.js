@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import ValidationError from './components/ValidationError/ValidationError';
+import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
+import data from './data.json';
 import './App.css';
 
 function App() {
+  const { categories, classSchedule } = data;
+
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -11,6 +15,8 @@ function App() {
 
   const [birthday, setBirthday] = useState("");
   // const [birthdayError, setBirthdayError] = useState(false);
+
+  const [areaOfStudy, setAreaOfStudy] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,12 +68,17 @@ function App() {
         />
         <ValidationError showError={emailError} message="You must use a valid email address." />
       
+        <label htmlFor="birthday">Birthday</label>
         <input
+          id="birthday"
           type="date" 
           value={birthday} 
           onChange={e => setBirthday(e.target.value)}
           required 
         />
+
+        <CheckboxGroup items={categories} updateState={setAreaOfStudy}  />
+        {/* {areaOfStudy.toString()} */}
 
         <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
       </form>
