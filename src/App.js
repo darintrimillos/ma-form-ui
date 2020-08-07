@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ValidationError from './components/ValidationError/ValidationError';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import data from './data.json';
@@ -16,7 +16,8 @@ function App() {
   const [birthday, setBirthday] = useState("");
   // const [birthdayError, setBirthdayError] = useState(false);
 
-  const [areaOfStudy, setAreaOfStudy] = useState();
+  const [areaOfStudy, setAreaOfStudy] = useState([]);
+  const [filteredClasses, setFilteredClasses] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +35,16 @@ function App() {
       return setEmailError(!(/[^@]+@[^.]+\..+/g.test(value)))
     } 
   }
+
+  useEffect(() => {
+    const filteredAreas = areaOfStudy.filter(val => val !== null);
+
+    const dateFiltered = classSchedule.filter((scheduleItem) => {
+      return filteredAreas.indexOf(scheduleItem.categoryId) !== -1;
+    });
+
+    setFilteredClasses(dateFiltered);
+  }, [areaOfStudy, classSchedule]);
   
   return (
     <div className="App">
@@ -77,8 +88,9 @@ function App() {
           required 
         />
 
-        <CheckboxGroup items={categories} updateState={setAreaOfStudy}  />
-        {/* {areaOfStudy.toString()} */}
+        <CheckboxGroup items={categories} updateState={setAreaOfStudy} extract="id" />
+        
+        <CheckboxGroup items={filteredClasses} updateState={() => {}} extract="classId" />
 
         <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
       </form>

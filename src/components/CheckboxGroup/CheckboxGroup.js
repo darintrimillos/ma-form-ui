@@ -5,7 +5,7 @@ function CheckboxGroup(props) {
   
   const groupValues = {};
   props.items.forEach((item, index) => {
-    groupValues[index] = { isChecked: false, id: item.id };
+    groupValues[index] = { isChecked: false, id: item[props.extract] };
   });
   const [state, setState] = useState(groupValues);
 
@@ -24,6 +24,7 @@ function CheckboxGroup(props) {
 
     Object.keys(state).forEach((key) => {
       if (state[key].isChecked) values.push(state[key].id)
+      else values.push(null);
     });
 
     return updateState(values);
