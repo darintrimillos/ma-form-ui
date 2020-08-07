@@ -18,13 +18,12 @@
     }
   ],
   "classSchedule": [
-    { "label": "July 23 to August 23", "classId": 1, "categoryId": 1 },
-    { "label": "August 26 to September 26", "classId": 2, "categoryId": 1 },
-    { "label": "July 23 to August 23", "classId": 3, "categoryId": 2 },
-    { "label": "August 26 to September 26", "classId": 4, "categoryId": 2 },
-    { "label": "July 23 to August 23", "classId": 5, "categoryId": 3 },
-    { "label": "August 26 to September 26", "classId": 6, "categoryId": 3 },
-    { "label": "June 9 to July 9", "classId": 7, "categoryId": 4 },
-    { "label": "August 9 to September 9", "classId": 8, "categoryId": 4 }
+    { "label": "July 23 to August 23", "classId": 1, "categoryId": 1, "startDate": "2021-07-23", "endDate": "2021-08-23" },
+    { "label": "August 26 to September 26", "classId": 2, "categoryId": 1, "startDate": "2021-08-26", "endDate": "2021-09-26" },
+    { "label": "May 10 to June 10", "classId": 3, "categoryId": 2, "startDate": "2021-05-10", "endDate": "2021-06-10" },
+    { "label": "July 11 to August 11", "classId": 4, "categoryId": 2, "startDate": "2021-07-11", "endDate": "2021-08-11" },
+    { "label": "July 11 to October 11", "classId": 5, "categoryId": 3, "startDate": "2021-07-11", "endDate": "2021-10-11" },
+    { "label": "June 9 to July 9", "classId": 7, "categoryId": 4, "startDate": "2021-06-09", "endDate": "2021-07-09" },
+    { "label": "August 9 to September 9", "classId": 8, "categoryId": 4, "startDate": "2021-08-09", "endDate": "2021-09-09" }
   ]
 }

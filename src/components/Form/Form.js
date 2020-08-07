@@ -91,9 +91,17 @@ function Form(props) {
     
       <h3>Area of Study</h3>
     
-      <CheckboxGroup items={categories} updateState={setAreaOfStudy} extract="id" />
+      <CheckboxGroup 
+        items={categories} 
+        updateState={setAreaOfStudy} 
+        extract="id" 
+      />
       
-      <CheckboxGroup items={filteredClasses} updateState={setSelectedClasses} extract="classId" />
+      <CheckboxGroup 
+        items={filteredClasses} 
+        updateState={setSelectedClasses} 
+        extract="classId" 
+      />
     
       <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
     </form>
