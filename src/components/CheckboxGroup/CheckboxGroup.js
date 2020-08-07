@@ -2,24 +2,31 @@ import React, { useState, useEffect } from 'react';
 
 function CheckboxGroup(props) {
   const updateState = props.updateState;
-  
-  const groupValues = {};
-  props.items.forEach((item, index) => {
-    groupValues[index] = { isChecked: false, id: item[props.extract] };
-  });
-  const [state, setState] = useState(groupValues);
+  const [state, setState] = useState({});
 
   const handleChecked = (e) => {
-    setState({
-      ...state,
-      [e.currentTarget.name]: { 
-        isChecked: !state[e.currentTarget.name].isChecked,
-        id: state[e.currentTarget.name].id
-      }
-    })
+    if (state[e.target.name]) {
+      setState({
+        ...state,
+        [e.target.name]: { 
+          isChecked: !state[e.target.name].isChecked,
+          id: state[e.target.name].id
+        }
+      })
+    }
   }
 
   useEffect(() => {
+    // set up state if props.items updates
+    const groupValues = {};
+    props.items.forEach((item, index) => {
+      groupValues[index] = { isChecked: false, id: item[props.extract] };
+    });
+    setState(groupValues);
+  }, [props.items, props.extract]);
+
+  useEffect(() => {
+    // when checkbox group state updates, update form state
     const values = [];
 
     Object.keys(state).forEach((key) => {
@@ -42,7 +49,7 @@ function CheckboxGroup(props) {
             name={index}
             onChange={handleChecked}
           />
-          <label htmlFor={checkboxId}>{item.label}</label><br />
+          <label htmlFor={checkboxId}>{item.label}</label>
         </li>
       )
     });

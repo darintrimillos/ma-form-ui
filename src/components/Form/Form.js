@@ -16,7 +16,7 @@ function Form(props) {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [areaOfStudy, setAreaOfStudy] = useState([]);
-  const [filteredClasses, setFilteredClasses] = useState([]);
+  const [filteredClasses, setFilteredClasses] = useState([]); /* eslint-disable-next-line */
   const [selectedClasses, setSelectedClasses] = useState([]);
 
   const handleFormText = (e) => {
@@ -60,6 +60,7 @@ function Form(props) {
         aria-label="Name"
         aria-required="true"
         aria-invalid={nameError}
+        placeholder="ex: Danger Russ"
         required
       />
       <ValidationError showError={nameError} message="You must enter a valid name." />
@@ -71,7 +72,7 @@ function Form(props) {
         value={formText.email}
         onChange={handleFormText}
         onBlur={e => validate(e.target)}
-        placeholder="ex: russell@seahawks.com"
+        placeholder="ex: dangeruss@seahawks.com"
         aria-label="Email"
         aria-required="true"
         aria-invalid={emailError}

@@ -20,9 +20,11 @@
   "classSchedule": [
     { "label": "July 23 to August 23", "classId": 1, "categoryId": 1 },
     { "label": "August 26 to September 26", "classId": 2, "categoryId": 1 },
-    { "label": "July 23 to August 23", "classId": 1, "categoryId": 2 },
-    { "label": "August 26 to September 26", "classId": 2, "categoryId": 2 },
-    { "label": "July 23 to August 23", "classId": 1, "categoryId": 3 },
-    { "label": "August 26 to September 26", "classId": 2, "categoryId": 3 }
+    { "label": "July 23 to August 23", "classId": 3, "categoryId": 2 },
+    { "label": "August 26 to September 26", "classId": 4, "categoryId": 2 },
+    { "label": "July 23 to August 23", "classId": 5, "categoryId": 3 },
+    { "label": "August 26 to September 26", "classId": 6, "categoryId": 3 },
+    { "label": "June 9 to July 9", "classId": 7, "categoryId": 4 },
+    { "label": "August 9 to September 9", "classId": 8, "categoryId": 4 }
   ]
 }
