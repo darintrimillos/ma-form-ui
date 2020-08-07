@@ -34,7 +34,7 @@ function CheckboxGroup(props) {
     .map((item, index) => {
       const checkboxId = item.label + '_' + index;
       return (
-        <React.Fragment key={index}>
+        <li key={index}>
           <input
             type="checkbox"
             value={item.id}
@@ -42,14 +42,16 @@ function CheckboxGroup(props) {
             name={index}
             onChange={handleChecked}
           />
-          <label htmlFor={checkboxId}>{item.label}</label>
-        </React.Fragment>
+          <label htmlFor={checkboxId}>{item.label}</label><br />
+        </li>
       )
     });
 
   return (
     <fieldset>
-      {checkboxes}
+      <ul>
+        {checkboxes}
+      </ul>
     </fieldset>
 
   );

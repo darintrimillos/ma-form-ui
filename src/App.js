@@ -79,7 +79,7 @@ function App() {
         />
         <ValidationError showError={emailError} message="You must use a valid email address." />
       
-        <label htmlFor="birthday">Birthday</label>
+        <label htmlFor="birthday">Birthday:</label>
         <input
           id="birthday"
           type="date" 
@@ -87,6 +87,8 @@ function App() {
           onChange={e => setBirthday(e.target.value)}
           required 
         />
+
+        <h3>Area of Study</h3>
 
         <CheckboxGroup items={categories} updateState={setAreaOfStudy} extract="id" />
         
