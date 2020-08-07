@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ValidationError from '../ValidationError/ValidationError';
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup';
+import filterByDate from './filterByDate';
 import data from '../../data.json';
 
 function Form(props) {
@@ -43,17 +44,12 @@ function Form(props) {
   }
 
   useEffect(() => {
-    const filteredAreas = areaOfStudy.filter(val => val !== null);
-
-    const dateFiltered = classSchedule.filter((scheduleItem) => {
-      return filteredAreas.indexOf(scheduleItem.categoryId) !== -1;
-    });
-
-    setFilteredClasses(dateFiltered);
+    setFilteredClasses(filterByDate(classSchedule, areaOfStudy, "categoryId"));
   }, [areaOfStudy, classSchedule]);
   
   return (
     <form onSubmit={handleSubmit}>
+      <h3>Personal Details</h3>
       <label htmlFor="name">Name:</label>
       <input
         type="text"
