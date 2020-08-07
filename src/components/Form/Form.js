@@ -6,17 +6,24 @@ import data from '../../data.json';
 function Form(props) {
   const { categories, classSchedule } = data;
 
-  const [name, setName] = useState("");
+  const [formText, setFormText] = useState({
+    name: "",
+    email: "",
+    birthday: ""
+  });
+
   const [nameError, setNameError] = useState(false);
-
-  const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
-
-  const [birthday, setBirthday] = useState("");
-  // const [birthdayError, setBirthdayError] = useState(false);
-
   const [areaOfStudy, setAreaOfStudy] = useState([]);
   const [filteredClasses, setFilteredClasses] = useState([]);
+  const [selectedClasses, setSelectedClasses] = useState([]);
+
+  const handleFormText = (e) => {
+    setFormText({
+      ...formText,
+      [e.target.id]: e.target.value
+    })
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,8 +58,8 @@ function Form(props) {
       <input
         type="text"
         id="name"
-        value={name}
-        onChange={e => setName(e.target.value)}
+        value={formText.name}
+        onChange={handleFormText}
         onBlur={e => validate(e.target)}
         aria-label="Name"
         aria-required="true"
@@ -61,13 +68,12 @@ function Form(props) {
       />
       <ValidationError showError={nameError} message="You must enter a valid name." />
     
-    
       <label htmlFor="email">Email:</label>
       <input
         type="text"
         id="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
+        value={formText.email}
+        onChange={handleFormText}
         onBlur={e => validate(e.target)}
         placeholder="ex: russell@seahawks.com"
         aria-label="Email"
@@ -81,8 +87,8 @@ function Form(props) {
       <input
         id="birthday"
         type="date" 
-        value={birthday} 
-        onChange={e => setBirthday(e.target.value)}
+        value={formText.birthday} 
+        onChange={handleFormText}
         required 
       />
     
@@ -90,7 +96,7 @@ function Form(props) {
     
       <CheckboxGroup items={categories} updateState={setAreaOfStudy} extract="id" />
       
-      <CheckboxGroup items={filteredClasses} updateState={() => {}} extract="classId" />
+      <CheckboxGroup items={filteredClasses} updateState={setSelectedClasses} extract="classId" />
     
       <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
     </form>
