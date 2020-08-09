@@ -3,6 +3,7 @@ import ValidationError from '../ValidationError/ValidationError';
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup';
 import filterByDate from './filterByDate';
 import data from '../../data.json';
+import SelectClasses from '../SelectClasses/SelectClasses';
 
 function Form(props) {
   const { categories, classSchedule } = data;
@@ -49,6 +50,7 @@ function Form(props) {
   
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Class Registration</h2>
       <h3>Personal Details</h3>
       <label htmlFor="name">Name:</label>
       <input
@@ -97,11 +99,7 @@ function Form(props) {
         extract="id" 
       />
       
-      <CheckboxGroup 
-        items={filteredClasses} 
-        updateState={setSelectedClasses} 
-        extract="classId" 
-      />
+      <SelectClasses schedule={classSchedule} categories={categories} areaOfStudy={areaOfStudy} />
     
       <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
     </form>
