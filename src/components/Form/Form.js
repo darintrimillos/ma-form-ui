@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ValidationError from '../ValidationError/ValidationError';
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup';
-import data from '../../data.json';
 import SelectClasses from '../SelectClasses/SelectClasses';
 
 function Form(props) {
-  const { categories, classSchedule } = data;
+  const { categories, classSchedule } = props.data;
 
   const [formText, setFormText] = useState({
     name: "",
@@ -30,7 +29,14 @@ function Form(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("submitted");
+    const formState = Object.assign({
+      ...formText,
+      areaOfStudy: areaOfStudy.checked,
+      selectedClasses: selectedClasses
+    })
+
+    // update formState in parent
+    props.updateState(formState);
   }
 
   const validate = (target) => {
