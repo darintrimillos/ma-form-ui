@@ -6,19 +6,18 @@ function SelectClasses(props) {
     const checkboxes = props.schedule.map(item => false);
     return {
       checkboxes: checkboxes,
-      areaOfStudy: [],
       checked: [],
       checkedCategories: [],
       checkedDates: []
     }
   });
   
-  useEffect(() => {
-    const areaOfStudy = props.areaOfStudy.filter(val => val !== null);
-    setState(prevState => {
-      return {...prevState, ...{ areaOfStudy }} 
-    }); 
-  }, [props.areaOfStudy]);
+  // useEffect(() => {
+  //   const areaOfStudy = props.areaOfStudy.filter(val => val !== null);
+  //   setState(prevState => {
+  //     return {...prevState, ...{ areaOfStudy }} 
+  //   }); 
+  // }, [props.areaOfStudy]);
 
   const handleChecked = (e) => {
     const future = state.checkboxes;
@@ -48,17 +47,18 @@ function SelectClasses(props) {
     });
   }
 
-  const noAreaOfStudy = () => state.areaOfStudy.length === 0
+  const noAreaOfStudy = () => props.areaOfStudy.checkedIds.length === 0
     ? (<p>Select an Area of Study</p>) 
     : null;
 
   const scheduleItems = props.schedule
     .map((item, index) => {
       const checkboxId = item.categoryId + '_' + item.classId;
+      const test = props.area
       return (
         <li 
           key={index} 
-          hidden={state.areaOfStudy.indexOf(item.categoryId) === -1}
+          hidden={props.areaOfStudy.checkedIds.indexOf(item.categoryId) === -1}
         >
           <input 
             id={checkboxId}

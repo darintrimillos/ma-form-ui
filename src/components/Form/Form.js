@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ValidationError from '../ValidationError/ValidationError';
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup';
-import filterByDate from './filterByDate';
 import data from '../../data.json';
 import SelectClasses from '../SelectClasses/SelectClasses';
 
@@ -16,8 +15,10 @@ function Form(props) {
 
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [areaOfStudy, setAreaOfStudy] = useState([]);
-  const [filteredClasses, setFilteredClasses] = useState([]); /* eslint-disable-next-line */
+  const [areaOfStudy, setAreaOfStudy] = useState({
+    checked: [],
+    checkedIds: []
+  });
   const [selectedClasses, setSelectedClasses] = useState([]);
 
   const handleFormText = (e) => {
@@ -43,10 +44,6 @@ function Form(props) {
       return setEmailError(!(/[^@]+@[^.]+\..+/g.test(value)))
     } 
   }
-
-  useEffect(() => {
-    setFilteredClasses(filterByDate(classSchedule, areaOfStudy, "categoryId"));
-  }, [areaOfStudy, classSchedule]);
   
   return (
     <form onSubmit={handleSubmit}>
