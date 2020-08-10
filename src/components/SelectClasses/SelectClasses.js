@@ -38,17 +38,13 @@ function SelectClasses(props) {
         ...{ checkedDates: checkedDates }
       }
     });
-
     props.updateState(checked);
   }
-
-  const noAreaOfStudy = () => props.areaOfStudy.checkedIds.length === 0
-    ? (<p>Select an Area of Study</p>) 
-    : null;
 
   const scheduleItems = props.schedule
     .map((item, index) => {
       const checkboxId = item.categoryId + '_' + item.classId;
+      const categoryLabel = props.categories[props.categories.findIndex(x => x.id === item.categoryId)].label;
       return (
         <li 
           key={index} 
@@ -77,7 +73,7 @@ function SelectClasses(props) {
               [item.startDate, item.endDate],
               state.checkedDates
             ) ? 'disabled': null}
-          >{item.label}</label>
+          >{ categoryLabel } - {item.label}</label> 
         </li>
       )
     });
@@ -85,7 +81,7 @@ function SelectClasses(props) {
   return (
     <fieldset>
       <h3>Classes</h3>
-      { noAreaOfStudy() }
+      { props.areaOfStudy.checkedIds.length === 0 ? <p>Select an Area of Study</p> : null }
       <ul>
         { scheduleItems }
       </ul>
