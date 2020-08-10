@@ -14,14 +14,6 @@ function Confirmation(props) {
       return false;
     }); 
 
-  const confirm = () => { 
-    const data = JSON.stringify(props.formData);
-    console.log(data);
-    alert('Form json: ', data); 
-  }
-
-  // console.log('classesDisplay', classesDisplay)
-
   return (
     <div>
       <h2>Confirmation</h2>
@@ -32,8 +24,6 @@ function Confirmation(props) {
         <li>Area of Study: { props.formData.areaOfStudy && props.formData.areaOfStudy.map(x => props.data.categories[x].label).join(', ') }</li>
         { classesDisplay}
       </ul>
-      <button onClick={confirm}>Confirm</button>
-      <button>Edit</button>
     </div>
   )
 }
