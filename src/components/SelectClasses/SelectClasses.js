@@ -11,13 +11,6 @@ function SelectClasses(props) {
       checkedDates: []
     }
   });
-  
-  // useEffect(() => {
-  //   const areaOfStudy = props.areaOfStudy.filter(val => val !== null);
-  //   setState(prevState => {
-  //     return {...prevState, ...{ areaOfStudy }} 
-  //   }); 
-  // }, [props.areaOfStudy]);
 
   const handleChecked = (e) => {
     const future = state.checkboxes;
@@ -45,6 +38,8 @@ function SelectClasses(props) {
         ...{ checkedDates: checkedDates }
       }
     });
+
+    props.updateState(checked);
   }
 
   const noAreaOfStudy = () => props.areaOfStudy.checkedIds.length === 0
@@ -54,7 +49,6 @@ function SelectClasses(props) {
   const scheduleItems = props.schedule
     .map((item, index) => {
       const checkboxId = item.categoryId + '_' + item.classId;
-      const test = props.area
       return (
         <li 
           key={index} 

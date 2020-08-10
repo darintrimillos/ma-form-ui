@@ -42,7 +42,9 @@ function Form(props) {
 
     if (id === 'email') {
       return setEmailError(!(/[^@]+@[^.]+\..+/g.test(value)))
-    } 
+    }
+
+
   }
   
   return (
@@ -93,12 +95,16 @@ function Form(props) {
       <CheckboxGroup 
         items={categories} 
         updateState={setAreaOfStudy} 
-        extract="id" 
       />
       
-      <SelectClasses schedule={classSchedule} categories={categories} areaOfStudy={areaOfStudy} />
+      <SelectClasses 
+        schedule={classSchedule} 
+        categories={categories} 
+        areaOfStudy={areaOfStudy} 
+        updateState={setSelectedClasses}
+      />
     
-      <input className="submit" type="submit" value="Submit" disabled={(nameError && emailError)}/>
+      <input className="submit" type="submit" value="Submit" disabled={selectedClasses.length === 0}/>
     </form>
   )
 }
