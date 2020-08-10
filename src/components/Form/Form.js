@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import ValidationError from '../ValidationError/ValidationError';
 import CheckboxGroup from '../CheckboxGroup/CheckboxGroup';
 import SelectClasses from '../SelectClasses/SelectClasses';
 
 function Form(props) {
   const { categories, classSchedule } = props.data;
+  const history = useHistory();
 
   const [formText, setFormText] = useState({
     name: "",
@@ -37,6 +39,7 @@ function Form(props) {
 
     // update formState in parent
     props.updateState(formState);
+    history.push('/confirmation');
   }
 
   const validate = (target) => {

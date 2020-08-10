@@ -1,6 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 function Confirmation(props) {
+  const history = useHistory();
   // console.log('confirmation props', props);
 
   const classesDisplay = props.data.classSchedule
@@ -24,6 +26,8 @@ function Confirmation(props) {
         <li>Area of Study: { props.formData.areaOfStudy && props.formData.areaOfStudy.map(x => props.data.categories[x].label).join(', ') }</li>
         { classesDisplay}
       </ul>
+      <button onClick={() => history.push("/results")}>Confirm</button>
+      <button onClick={() => history.push("/")}>Edit</button>
     </div>
   )
 }
