@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Form from './components/Form/Form';
 import Confirmation from './Confirmation';
+import Results from './Results';
 import data from './data.json';
 import {
   BrowserRouter as Router,
@@ -22,7 +23,7 @@ function App() {
           <Confirmation formData={formData} data={data} />
         </Route>
         <Route path="/results">
-          <h2>Results</h2>
+          <Results formData={formData} data={data} />
         </Route>
       </Switch>
     </Router>
