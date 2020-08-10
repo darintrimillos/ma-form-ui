@@ -58,8 +58,8 @@ function Form(props) {
   
   return (
     <form onSubmit={handleSubmit} className="container">
-      <div>
-      <h2>Personal Details</h2>
+      <div className="personal-details">
+        <h2>Personal Details</h2>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -114,7 +114,7 @@ function Form(props) {
         updateState={setSelectedClasses}
       />
     
-      <input className="submit" type="submit" value="Submit" disabled={selectedClasses.length === 0}/>
+      <input className="confirm button" type="submit" value="Submit" disabled={selectedClasses.length === 0}/>
     </form>
   )
 }

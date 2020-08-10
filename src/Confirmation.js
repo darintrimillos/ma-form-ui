@@ -26,8 +26,8 @@ function Confirmation(props) {
         <li>Area of Study: { props.formData.areaOfStudy && props.formData.areaOfStudy.map(x => props.data.categories[x].label).join(', ') }</li>
         { classesDisplay}
       </ul>
-      <button onClick={() => history.push("/results")}>Confirm</button>
-      <button onClick={() => history.push("/")}>Edit</button>
+      <button className="button confirm" onClick={() => history.push("/results")}>Confirm</button>
+      <button className="button reject" onClick={() => history.push("/")}>Edit</button>
     </div>
   )
 }
