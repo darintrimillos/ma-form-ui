@@ -17,7 +17,7 @@ function Confirmation(props) {
     }); 
 
   return (
-    <div>
+    <div className="container">
       <h2>Confirmation</h2>
       <ul>
         <li>Name: { props.formData.name }</li>

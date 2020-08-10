@@ -14,20 +14,22 @@ function App() {
   const [formData, setFormData] = useState({});
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Form updateState={setFormData} data={data} />
-        </Route>
-        <Route path="/confirmation">
-          <Confirmation formData={formData} data={data} />
-        </Route>
-        <Route path="/results">
-          <Results formData={formData} data={data} />
-        </Route>
-      </Switch>
-    </Router>
-
+    <React.Fragment>
+      <h1>Register for Classes</h1>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Form updateState={setFormData} data={data} />
+          </Route>
+          <Route path="/confirmation">
+            <Confirmation formData={formData} data={data} />
+          </Route>
+          <Route path="/results">
+            <Results formData={formData} data={data} />
+          </Route>
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 

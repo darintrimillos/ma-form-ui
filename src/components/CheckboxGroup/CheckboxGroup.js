@@ -57,6 +57,7 @@ function CheckboxGroup(props) {
 
   return (
     <fieldset>
+      {props.children}
       <ul>
         {checkboxes}
       </ul>

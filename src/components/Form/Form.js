@@ -57,54 +57,55 @@ function Form(props) {
   }
   
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Class Registration</h2>
-      <h3>Personal Details</h3>
-      <label htmlFor="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        value={formText.name}
-        onChange={handleFormText}
-        onBlur={e => validate(e.target)}
-        aria-label="Name"
-        aria-required="true"
-        aria-invalid={nameError}
-        placeholder="ex: Danger Russ"
-        required
-      />
-      <ValidationError showError={nameError} message="You must enter a valid name." />
-    
-      <label htmlFor="email">Email:</label>
-      <input
-        type="text"
-        id="email"
-        value={formText.email}
-        onChange={handleFormText}
-        onBlur={e => validate(e.target)}
-        placeholder="ex: dangeruss@seahawks.com"
-        aria-label="Email"
-        aria-required="true"
-        aria-invalid={emailError}
-        required
-      />
-      <ValidationError showError={emailError} message="You must use a valid email address." />
-    
-      <label htmlFor="birthday">Birthday:</label>
-      <input
-        id="birthday"
-        type="date" 
-        value={formText.birthday} 
-        onChange={handleFormText}
-        required 
-      />
-    
-      <h3>Area of Study</h3>
+    <form onSubmit={handleSubmit} className="container">
+      <div>
+      <h2>Personal Details</h2>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={formText.name}
+          onChange={handleFormText}
+          onBlur={e => validate(e.target)}
+          aria-label="Name"
+          aria-required="true"
+          aria-invalid={nameError}
+          placeholder="ex: Danger Russ"
+          required
+        />
+        <ValidationError showError={nameError} message="You must enter a valid name." />
+      
+        <label htmlFor="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          value={formText.email}
+          onChange={handleFormText}
+          onBlur={e => validate(e.target)}
+          placeholder="ex: dangeruss@seahawks.com"
+          aria-label="Email"
+          aria-required="true"
+          aria-invalid={emailError}
+          required
+        />
+        <ValidationError showError={emailError} message="You must use a valid email address." />
+      
+        <label htmlFor="birthday">Birthday:</label>
+        <input
+          id="birthday"
+          type="date" 
+          value={formText.birthday} 
+          onChange={handleFormText}
+          required 
+        />
+      </div>
     
       <CheckboxGroup 
         items={categories} 
         updateState={setAreaOfStudy} 
-      />
+      >
+        <h2>Area of Study</h2>
+      </CheckboxGroup>
       
       <SelectClasses 
         schedule={classSchedule} 

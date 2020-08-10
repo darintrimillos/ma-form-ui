@@ -80,8 +80,8 @@ function SelectClasses(props) {
 
   return (
     <fieldset>
-      <h3>Classes</h3>
-      { props.areaOfStudy.checkedIds.length === 0 ? <p>Select an Area of Study</p> : null }
+      <h2>Classes</h2>
+      { props.areaOfStudy.checkedIds.length === 0 ? <p>Select an Area of Study.</p> : null }
       <ul>
         { scheduleItems }
       </ul>
