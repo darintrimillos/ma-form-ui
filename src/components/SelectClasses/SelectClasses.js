@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import isDisabled from './isDisabled';
 
 function SelectClasses(props) {
   const [state, setState] = useState(() => {
@@ -6,7 +7,9 @@ function SelectClasses(props) {
     return {
       checkboxes: checkboxes,
       areaOfStudy: [],
-      checked: []
+      checked: [],
+      checkedCategories: [],
+      checkedDates: []
     }
   });
   
@@ -21,12 +24,16 @@ function SelectClasses(props) {
     const future = state.checkboxes;
     const checkedIndex = e.target.name;
     const checked = []
+    const checkedCategories = [];
+    const checkedDates = [];
 
     future[checkedIndex] = !future[checkedIndex];
 
     for (let i = 0; i < future.length; i++) {
       if (future[i] === true) { 
         checked.push(i);
+        checkedCategories.push(props.schedule[i].categoryId);
+        checkedDates.push([props.schedule[i].startDate, props.schedule[i].endDate]);
       }
     }
 
@@ -34,54 +41,14 @@ function SelectClasses(props) {
       return { 
         ...prevState, 
         ...{ checkboxes: future },
-        ...{ checked: checked }
+        ...{ checked: checked },
+        ...{ checkedCategories: checkedCategories },
+        ...{ checkedDates: checkedDates }
       }
     });
   }
 
-  const disabled = (isChecked, index) => {
-    if (isChecked) {
-      console.log('i am checked!')
-      return false;
-    }
-
-    // for (let i = 0; i < state.checked.length; i++) {
-
-    // }
-  }
-
-    // for (let i = 0; i < state.checked.length; i++) {
-    //   const checked = props.schedule[state.checked[i]];
-    // }
-
-  //   console.log('disabled', checkbox, state.checked);
-  //   if (isChecked) return false;
-
-  //   for (let i = 0; i < state.checked.length; i++) {
-
-  //     // checkbox is same category as already checked
-  //     if (state.checked.categoryId === checkbox.categoryId) {
-  //       console.log('categoryIds match')
-  //       return true;
-  //     }
-
-  //     console.log('checking times');
-  //     const { startDate, endDate } = state.checked[i];
-  //     if (startDate > checkbox.startDate) {
-  //       if (checkbox.endDate > startDate
-  //         || checkbox.endDate > endDate) return true;
-  //     } else {
-  //       if (endDate > checkbox.startDate
-  //         || endDate > checkbox.endDate) return true;
-  //     }
-  //   }
-  //   console.log('still enabled');
-
-  //   return false;
-  // }
-  // }
-
-  const noAreaOfStudy = () => props.areaOfStudy.length === 0
+  const noAreaOfStudy = () => state.areaOfStudy.length === 0
     ? (<p>Select an Area of Study</p>) 
     : null;
 
@@ -99,9 +66,24 @@ function SelectClasses(props) {
             value={state.checkboxes[index]}
             name={index}
             onChange={handleChecked}
-            disabled={disabled(state.checkboxes[index], index)}
+            disabled={isDisabled(
+              state.checkboxes[index],
+              item.categoryId,
+              state.checkedCategories,
+              [item.startDate, item.endDate],
+              state.checkedDates
+            )}
           />          
-          <label htmlFor={checkboxId}>{ item.categoryLabel}: { item.label }</label>
+          <label 
+            htmlFor={checkboxId}
+            className={isDisabled(
+              state.checkboxes[index],
+              item.categoryId,
+              state.checkedCategories,
+              [item.startDate, item.endDate],
+              state.checkedDates
+            ) ? 'disabled': null}
+          >{item.label}</label>
         </li>
       )
     });
