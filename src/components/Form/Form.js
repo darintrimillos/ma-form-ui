@@ -114,7 +114,15 @@ function Form(props) {
         updateState={setSelectedClasses}
       />
     
-      <input className="confirm button" type="submit" value="Submit" disabled={selectedClasses.length === 0}/>
+      <div className="button-group">
+        <input 
+          // confirm button
+          className={selectedClasses.length === 0 ? "confirm button disabled-button" : "confirm button"} 
+          type="submit" 
+          value="Submit" 
+          disabled={selectedClasses.length === 0}
+        />
+      </div>
     </form>
   )
 }

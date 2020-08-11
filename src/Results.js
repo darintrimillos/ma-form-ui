@@ -6,10 +6,10 @@ function Results(props) {
   formData.selectedClasses = formData.selectedClasses && formData.selectedClasses.map(k => props.data.classSchedule[k].classId)
     
   return (
-    <React.Fragment>
-      <h2>Results</h2>
+    <div className="container">
+      <h2 className="center">Results</h2>
       {JSON.stringify(formData)}
-    </React.Fragment>
+    </div>
   );
 }
 
