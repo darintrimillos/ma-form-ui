@@ -49,8 +49,10 @@ function CheckboxGroup(props) {
             id={checkboxId}
             name={index}
             onChange={handleChecked}
+            aria-checked={state.checkboxes[index]}
+            aria-labelledby={index + 'group-label'}
           />
-          <label htmlFor={checkboxId} className="label">{item.label}</label>
+          <label htmlFor={checkboxId} id={index + 'group-label'} className="label">{item.label}</label>
         </li>
       )
     });

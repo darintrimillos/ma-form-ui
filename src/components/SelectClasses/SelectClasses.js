@@ -56,6 +56,8 @@ function SelectClasses(props) {
             value={state.checkboxes[index]}
             name={index}
             onChange={handleChecked}
+            aria-checked={state.checkboxes[index]}
+            aria-labelledby={index + '0-selectClasses-label'}
             disabled={isDisabled(
               state.checkboxes[index],
               item.categoryId,
@@ -66,6 +68,7 @@ function SelectClasses(props) {
           />          
           <label 
             htmlFor={checkboxId}
+            id={index + '0-selectClasses-label'}
             className={isDisabled(
               state.checkboxes[index],
               item.categoryId,
