@@ -43,10 +43,6 @@ function Confirmation(props) {
           <td>{ classesDisplay }</td>
         </tr>
       </table>
-      {/* <ul>
-        { classesDisplay}
-      </ul> */}
-      
       <div className="button-group">
         <button className="button reject" onClick={() => history.push("/")}>Edit</button>
         <button className="button confirm" onClick={() => history.push("/results")}>Confirm</button>

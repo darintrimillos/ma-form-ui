@@ -50,7 +50,7 @@ function CheckboxGroup(props) {
             name={index}
             onChange={handleChecked}
           />
-          <label htmlFor={checkboxId}>{item.label}</label>
+          <label htmlFor={checkboxId} className="label">{item.label}</label>
         </li>
       )
     });

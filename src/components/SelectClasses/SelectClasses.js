@@ -72,7 +72,7 @@ function SelectClasses(props) {
               state.checkedCategories,
               [item.startDate, item.endDate],
               state.checkedDates
-            ) ? 'disabled': null}
+            ) ? 'disabled label': 'label'}
           >{ categoryLabel } - {item.label}</label> 
         </li>
       )

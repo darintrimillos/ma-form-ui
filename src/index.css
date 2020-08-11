@@ -25,22 +25,30 @@ ul li {
   list-style: none;
 }
 
+li {
+  margin-bottom: 4px;
+}
+
 fieldset {
   border: none;
   padding: 0;
 }
 
 input[type=text], input[type=date] {
+  border-radius: 4px;
   display: block;
-  margin: 5px 0 10px; 
+  font-size: 16px;
+  margin: 5px 0 25px; 
+  padding: 10px 8px 12px;
 }
 
-input[type=date] {
-  padding: 5px;
+input[type=text] {
+  min-width: 80%;
+  border: 0;
 }
 
 input[type=checkbox] {
-  margin: 5px 5px 0;
+  margin: 5px 10px 0;
 }
 
 input[type=submit] {

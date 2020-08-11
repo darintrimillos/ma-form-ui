@@ -16,6 +16,7 @@ function Form(props) {
 
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [birthdayError, setBirthdayError] = useState(false);
   const [areaOfStudy, setAreaOfStudy] = useState({
     checked: [],
     checkedIds: []
@@ -53,7 +54,9 @@ function Form(props) {
       return setEmailError(!(/[^@]+@[^.]+\..+/g.test(value)))
     }
 
-
+    if (id=== 'birthday') {
+      return setBirthdayError(!(/^\d{4}-\d\d-\d\d$/gm.test(value)))
+    }
   }
   
   return (
@@ -96,8 +99,12 @@ function Form(props) {
           type="date" 
           value={formText.birthday} 
           onChange={handleFormText}
-          required 
+          onBlur={e => validate(e.target)}
+          required
+          max={new Date().toISOString().split("T")[0]}
         />
+
+        <ValidationError showError={birthdayError} message="You must enter a valid date." />
       </div>
     
       <CheckboxGroup 
@@ -116,7 +123,6 @@ function Form(props) {
     
       <div className="button-group">
         <input 
-          // confirm button
           className={selectedClasses.length === 0 ? "confirm button disabled-button" : "confirm button"} 
           type="submit" 
           value="Submit" 

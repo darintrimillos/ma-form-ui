@@ -10,6 +10,7 @@
   background-color: #0B2545;
   border-radius: 15px;
   padding: 20px;
+  min-width: 300px;
 }
 
 #root {
@@ -66,4 +67,8 @@
 
 .center {
   text-align: center;
+}
+
+.label {
+  cursor: pointer;
 }
